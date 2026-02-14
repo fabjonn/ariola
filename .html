@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pour Ariola ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            height: 100vh;
+            background: black;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+        }
+
+        #intro {
+            font-size: 2em;
+            letter-spacing: 3px;
+        }
+
+        #main {
+            display: none;
+            height: 100vh;
+            width: 100%;
+            background: radial-gradient(circle at center, #ff7eb3, #ff4b6e, #8b0000);
+            position: absolute;
+            top: 0;
+            left: 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 3em;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards;
+        }
+
+        #message {
+            font-size: 1.2em;
+            margin-top: 20px;
+            min-height: 60px;
+        }
+
+        img {
+            width: 260px;
+            border-radius: 15px;
+            margin-top: 20px;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 12px 25px;
+            font-size: 1em;
+            border: none;
+            border-radius: 30px;
+            background: white;
+            color: #ff4b6e;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="intro"></div>
+
+    <div id="main">
+        <h1>Joyeuse Saint-Valentin Ariola ❤️</h1>
+        <div id="message"></div>
+
+        <!-- Photo (tu peux remplacer le lien par votre vraie photo) -->
+        <img id="photo" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=600">
+
+        <button onclick="massiveHearts()">Je t'aime ❤️</button>
+    </div>
+
+    <!-- Musique romantique -->
+    <audio id="music" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let introText = "Pour Ariola...";
+        let loveText = "Ariola, depuis que tu es entrée dans ma vie, tout est plus fort, plus beau, plus intense. Tu es mon évidence.";
+
+        let i = 0;
+        let j = 0;
+
+        function typeIntro() {
+            if (i < introText.length) {
+                document.getElementById("intro").innerHTML += introText.charAt(i);
+                i++;
+                setTimeout(typeIntro, 120);
+            } else {
+                setTimeout(showMain, 1200);
+            }
+        }
+
+        function showMain() {
+            document.getElementById("intro").style.display = "none";
+            let main = document.getElementById("main");
+            main.style.display = "flex";
+
+            document.getElementById("music").play();
+            typeLove();
+        }
+
+        function typeLove() {
+            if (j < loveText.length) {
+                document.getElementById("message").innerHTML += loveText.charAt(j);
+                j++;
+                setTimeout(typeLove, 50);
+            } else {
+                document.getElementById("photo").style.opacity = 1;
+            }
+        }
+
+        function massiveHearts() {
+            for (let k = 0; k < 200; k++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.style.position = "absolute";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.fontSize = (20 + Math.random() * 40) + "px";
+                document.body.appendChild(heart);
+            }
+        }
+
+        typeIntro();
+    </script>
+
+</body>
+</html>
